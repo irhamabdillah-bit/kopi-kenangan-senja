@@ -1,0 +1,330 @@
+/* =========================
+   WHY US
+========================= */
+
+.why-us {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+
+  padding: 110px 60px;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  background: #111111;
+
+  color: #ffffff;
+
+  isolation: isolate;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.why-background {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  z-index: -2;
+
+  transform: scale(1.04);
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.why-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  background: linear-gradient(
+    90deg,
+    rgba(8, 8, 8, 0.97) 0%,
+    rgba(8, 8, 8, 0.9) 45%,
+    rgba(8, 8, 8, 0.72) 100%
+  );
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.why-container {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1250px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    0.9fr
+    1.4fr;
+
+  gap: 90px;
+
+  align-items: center;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.why-intro {
+  max-width: 500px;
+}
+
+/* =========================
+   LABEL
+========================= */
+
+.why-label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  margin-bottom: 20px;
+
+  color: #c8a27a;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 4px;
+}
+
+.why-label span {
+  width: 40px;
+  height: 1px;
+
+  background: #c8a27a;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.why-intro h2 {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(42px, 4.4vw, 62px);
+
+  font-weight: 400;
+
+  line-height: 1.04;
+
+  letter-spacing: -1.5px;
+}
+
+.why-intro h2 strong {
+  color: #c8a27a;
+
+  font-weight: 400;
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.why-intro > p {
+  max-width: 450px;
+
+  margin: 28px 0 0;
+
+  color: #9b9b9b;
+
+  font-size: 13px;
+
+  line-height: 1.9;
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.why-features {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  column-gap: 40px;
+
+  row-gap: 45px;
+}
+
+/* =========================
+   FEATURE
+========================= */
+
+.why-feature {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  transition: transform 0.3s ease;
+}
+
+.why-feature:hover {
+  transform: translateY(-5px);
+}
+
+/* =========================
+   ICON
+========================= */
+
+.why-icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 17px;
+
+  border: 1px solid rgba(200, 162, 122, 0.6);
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.3);
+
+  color: #c8a27a;
+
+  font-size: 17px;
+
+  box-shadow: 0 0 25px rgba(200, 162, 122, 0.08);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.why-feature:hover .why-icon {
+  background: #c8a27a;
+
+  color: #171717;
+
+  transform: scale(1.08);
+}
+
+/* =========================
+   FEATURE CONTENT
+========================= */
+
+.why-feature-content h3 {
+  margin: 0 0 8px;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.why-feature-content p {
+  max-width: 170px;
+
+  margin: 0;
+
+  color: #858585;
+
+  font-size: 11px;
+
+  line-height: 1.7;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1050px) {
+  .why-us {
+    padding: 100px 40px;
+  }
+
+  .why-container {
+    grid-template-columns: 1fr;
+
+    gap: 60px;
+  }
+
+  .why-intro {
+    max-width: 700px;
+  }
+
+  .why-features {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+  .why-us {
+    min-height: auto;
+
+    padding: 80px 20px;
+  }
+
+  .why-container {
+    gap: 50px;
+  }
+
+  .why-intro h2 {
+    font-size: 42px;
+  }
+
+  .why-features {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 40px 25px;
+  }
+
+  .why-feature-content p {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 420px) {
+  .why-features {
+    grid-template-columns: 1fr;
+  }
+
+  .why-feature-content p {
+    max-width: 250px;
+  }
+}

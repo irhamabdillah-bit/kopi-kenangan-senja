@@ -1,0 +1,468 @@
+/* =========================
+   MENU SECTION
+========================= */
+
+.menu {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+
+  padding: 110px 60px;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  background: #111111;
+
+  color: #ffffff;
+
+  isolation: isolate;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.menu-background {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  z-index: -2;
+
+  transform: scale(1.04);
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.menu-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  background: linear-gradient(
+    90deg,
+    rgba(8, 8, 8, 0.96) 0%,
+    rgba(8, 8, 8, 0.9) 35%,
+    rgba(8, 8, 8, 0.72) 70%,
+    rgba(8, 8, 8, 0.82) 100%
+  );
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.menu-container {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1250px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    0.8fr
+    2fr;
+
+  gap: 55px;
+
+  align-items: center;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.menu-intro {
+  max-width: 370px;
+}
+
+/* =========================
+   LABEL
+========================= */
+
+.menu-label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  margin-bottom: 20px;
+
+  color: #c8a27a;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 4px;
+}
+
+.menu-label span {
+  width: 40px;
+  height: 1px;
+
+  background: #c8a27a;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.menu-intro h2 {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(42px, 4.5vw, 64px);
+
+  font-weight: 400;
+
+  line-height: 1.03;
+
+  letter-spacing: -1.5px;
+}
+
+.menu-intro h2 strong {
+  color: #c8a27a;
+
+  font-weight: 400;
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.menu-intro > p {
+  margin: 25px 0 30px;
+
+  color: #a5a5a5;
+
+  font-size: 13px;
+
+  line-height: 1.9;
+}
+
+/* =========================
+   MAIN BUTTON
+========================= */
+
+.menu-main-button {
+  width: fit-content;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 25px;
+
+  padding: 13px 18px;
+
+  border: 1px solid rgba(200, 162, 122, 0.7);
+
+  border-radius: 4px;
+
+  background: rgba(0, 0, 0, 0.2);
+
+  color: #ffffff;
+
+  font-size: 11px;
+
+  text-decoration: none;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.menu-main-button span {
+  color: #c8a27a;
+
+  font-size: 18px;
+
+  transition: transform 0.3s ease;
+}
+
+.menu-main-button:hover {
+  background: #c8a27a;
+
+  color: #171717;
+
+  transform: translateY(-2px);
+}
+
+.menu-main-button:hover span {
+  color: #171717;
+
+  transform: translateX(4px);
+}
+
+/* =========================
+   MENU LIST
+========================= */
+
+.menu-list {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 18px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.menu-card {
+  overflow: hidden;
+
+  border: 1px solid rgba(200, 162, 122, 0.42);
+
+  border-radius: 7px;
+
+  background: rgba(15, 15, 15, 0.72);
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px);
+
+  border-color: #c8a27a;
+
+  background: rgba(20, 20, 20, 0.88);
+}
+
+/* =========================
+   CARD IMAGE
+========================= */
+
+.menu-card-image {
+  position: relative;
+
+  width: 100%;
+
+  height: 205px;
+
+  overflow: hidden;
+}
+
+.menu-card-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.6s ease;
+}
+
+.menu-card:hover .menu-card-image img {
+  transform: scale(1.08);
+}
+
+/* =========================
+   CATEGORY
+========================= */
+
+.menu-category {
+  position: absolute;
+
+  left: 12px;
+  bottom: 12px;
+
+  padding: 7px 10px;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  border-radius: 3px;
+
+  background: rgba(0, 0, 0, 0.7);
+
+  color: #ffffff;
+
+  font-size: 8px;
+
+  font-weight: 600;
+
+  letter-spacing: 1.5px;
+
+  backdrop-filter: blur(5px);
+}
+
+/* =========================
+   CARD CONTENT
+========================= */
+
+.menu-card-content {
+  padding: 18px 16px 16px;
+}
+
+.menu-card-content h3 {
+  margin: 0 0 10px;
+
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.menu-card-content p {
+  min-height: 62px;
+
+  margin: 0;
+
+  color: #909090;
+
+  font-size: 11px;
+
+  line-height: 1.7;
+}
+
+/* =========================
+   LINE
+========================= */
+
+.menu-card-line {
+  width: 45px;
+
+  height: 1px;
+
+  margin: 13px 0;
+
+  background: rgba(200, 162, 122, 0.45);
+}
+
+/* =========================
+   CARD BOTTOM
+========================= */
+
+.menu-card-bottom {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.menu-price {
+  color: #c8a27a;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+/* =========================
+   ORDER BUTTON
+========================= */
+
+.menu-order-button {
+  padding: 8px 13px;
+
+  border: 1px solid rgba(200, 162, 122, 0.7);
+
+  border-radius: 4px;
+
+  background: transparent;
+
+  color: #c8a27a;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.menu-order-button:hover {
+  background: #c8a27a;
+
+  color: #171717;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1100px) {
+  .menu {
+    padding: 100px 40px;
+  }
+
+  .menu-container {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+  .menu-intro {
+    max-width: 650px;
+  }
+
+  .menu-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .menu {
+    min-height: auto;
+
+    padding: 80px 20px;
+  }
+
+  .menu-container {
+    gap: 40px;
+  }
+
+  .menu-intro h2 {
+    font-size: 43px;
+  }
+
+  .menu-list {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+  .menu-card-image {
+    height: 220px;
+  }
+}

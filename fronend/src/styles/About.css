@@ -1,0 +1,495 @@
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+
+  padding: 100px 60px;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  background: #111111;
+
+  color: #ffffff;
+
+  isolation: isolate;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.about-background {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  z-index: -2;
+
+  transform: scale(1.05);
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.about-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  background: linear-gradient(
+    90deg,
+    rgba(10, 10, 10, 0.97) 0%,
+    rgba(10, 10, 10, 0.91) 35%,
+    rgba(10, 10, 10, 0.76) 65%,
+    rgba(10, 10, 10, 0.68) 100%
+  );
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.about-container {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1250px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    1.05fr
+    0.95fr;
+
+  gap: 100px;
+
+  align-items: center;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.about-content {
+  max-width: 650px;
+}
+
+/* =========================
+   LABEL
+========================= */
+
+.about-label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-bottom: 20px;
+
+  color: #c8a27a;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 4px;
+}
+
+.about-label span {
+  width: 42px;
+  height: 1px;
+
+  background: #c8a27a;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.about-content h2 {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(45px, 5vw, 68px);
+
+  font-weight: 400;
+
+  line-height: 1.02;
+
+  letter-spacing: -2px;
+}
+
+.about-content h2 strong {
+  color: #c8a27a;
+
+  font-weight: 400;
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.about-description {
+  max-width: 600px;
+
+  margin: 30px 0 0;
+
+  color: #a7a7a7;
+
+  font-size: 13px;
+
+  line-height: 1.9;
+}
+
+.about-description.second {
+  margin-top: 15px;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.about-stats {
+  display: flex;
+
+  align-items: center;
+
+  gap: 55px;
+
+  margin-top: 42px;
+}
+
+.about-stat {
+  position: relative;
+}
+
+.about-stat:not(:last-child)::after {
+  content: "";
+
+  position: absolute;
+
+  top: 4px;
+
+  right: -28px;
+
+  width: 1px;
+  height: 38px;
+
+  background: rgba(200, 162, 122, 0.25);
+}
+
+.about-stat h3 {
+  margin: 0;
+
+  color: #c8a27a;
+
+  font-size: 28px;
+
+  font-weight: 600;
+
+  line-height: 1;
+}
+
+.about-stat h3 span {
+  font-size: 18px;
+}
+
+.about-stat p {
+  margin: 8px 0 0;
+
+  color: #777777;
+
+  font-size: 9px;
+
+  letter-spacing: 0.5px;
+}
+
+/* =========================
+   VISUAL
+========================= */
+
+.about-visual {
+  position: relative;
+
+  min-height: 520px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+/* =========================
+   IMAGE CARD
+========================= */
+
+.about-image-card {
+  position: relative;
+
+  width: 420px;
+  height: 500px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(200, 162, 122, 0.35);
+
+  border-radius: 5px;
+
+  background: #151515;
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+
+  transition:
+    transform 0.5s ease,
+    border-color 0.5s ease;
+}
+
+.about-image-card:hover {
+  transform: translateY(-8px);
+
+  border-color: rgba(200, 162, 122, 0.75);
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.about-image-card img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  transition: transform 0.8s ease;
+}
+
+.about-image-card:hover img {
+  transform: scale(1.06);
+}
+
+/* =========================
+   IMAGE OVERLAY
+========================= */
+
+.about-image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.05) 25%,
+    rgba(0, 0, 0, 0.35) 55%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+}
+
+/* =========================
+   CARD CONTENT
+========================= */
+
+.about-card-content {
+  position: absolute;
+
+  left: 35px;
+  right: 35px;
+  bottom: 35px;
+
+  z-index: 2;
+}
+
+.about-card-content > span {
+  display: block;
+
+  margin-bottom: 13px;
+
+  color: #c8a27a;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: 3px;
+}
+
+.about-card-content h3 {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  color: #ffffff;
+
+  font-size: 35px;
+
+  font-weight: 400;
+
+  line-height: 1.05;
+}
+
+.about-card-content p {
+  max-width: 270px;
+
+  margin: 17px 0 0;
+
+  color: #b0b0b0;
+
+  font-size: 11px;
+
+  line-height: 1.8;
+}
+
+/* =========================
+   DECORATIVE CIRCLE
+========================= */
+
+.about-circle {
+  position: absolute;
+
+  width: 470px;
+  height: 470px;
+
+  border: 1px solid rgba(200, 162, 122, 0.2);
+
+  border-radius: 50%;
+
+  z-index: -1;
+}
+
+/* =========================
+   DECORATIVE LINE
+========================= */
+
+.about-small-line {
+  position: absolute;
+
+  right: -20px;
+  top: 50%;
+
+  width: 80px;
+  height: 1px;
+
+  background: rgba(200, 162, 122, 0.45);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1000px) {
+  .about {
+    padding: 90px 40px;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr;
+
+    gap: 70px;
+  }
+
+  .about-content {
+    max-width: 750px;
+  }
+
+  .about-visual {
+    min-height: 500px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .about {
+    min-height: auto;
+
+    padding: 80px 20px;
+  }
+
+  .about-container {
+    gap: 55px;
+  }
+
+  .about-content h2 {
+    font-size: 43px;
+
+    letter-spacing: -1px;
+  }
+
+  .about-description {
+    font-size: 12px;
+  }
+
+  .about-stats {
+    gap: 35px;
+
+    margin-top: 35px;
+  }
+
+  .about-stat h3 {
+    font-size: 23px;
+  }
+
+  .about-stat:not(:last-child)::after {
+    right: -18px;
+  }
+
+  .about-visual {
+    min-height: 430px;
+  }
+
+  .about-image-card {
+    width: 100%;
+    max-width: 380px;
+
+    height: 430px;
+  }
+
+  .about-circle {
+    width: 390px;
+    height: 390px;
+  }
+
+  .about-small-line {
+    display: none;
+  }
+
+  .about-card-content {
+    left: 25px;
+    right: 25px;
+    bottom: 25px;
+  }
+
+  .about-card-content h3 {
+    font-size: 30px;
+  }
+}
