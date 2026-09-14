@@ -6,6 +6,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -21,4 +22,79 @@ input,
 textarea,
 select {
   font-family: inherit;
+}
+
+/* Social Reveal */
+
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Form Button */
+
+.reveal-up {
+  transform: translateY(70px);
+}
+
+/* Form Left */
+
+.reveal-left {
+  transform: translateY(-70px);
+}
+
+/* Form Right */
+
+.reveal-right {
+  transform: translateX(70px);
+}
+
+/* Active */
+
+.reveal.active {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* Image Hover / Motion */
+
+reveal.active img {
+  animation: imageReveal 1.2s ease forwards;
+}
+
+@keyframes imageReveal {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Scroll Reveal */
+
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-up {
+  transform: translateY(70px);
+}
+
+.reveal-left {
+  transform: translateX(-70px);
+}
+
+.reveal-right {
+  transform: translateX(70px);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translate(0);
 }

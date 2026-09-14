@@ -1,49 +1,45 @@
 import "../styles/Menu.css";
-import coffeeImage from "../assets/hero-coffee.png";
+
+import latteImage from "../assets/latte.png";
+import americanoImage from "../assets/americano.png";
+import caramelImage from "../assets/caramel.png";
+import matchaImage from "../assets/matcha.png";
 
 const menuItems = [
   {
     name: "Creamy Latte",
     description: "Perpaduan espresso dan susu creamy dengan rasa yang lembut.",
     price: "Rp25.000",
+    image: latteImage,
   },
   {
     name: "Iced Americano",
     description:
       "Kopi hitam dengan rasa bold dan segar, cocok untuk segala suasana.",
     price: "Rp20.000",
+    image: americanoImage,
   },
   {
     name: "Caramel Macchiato",
     description:
       "Kombinasi espresso, susu, dan sentuhan caramel yang menggoda.",
     price: "Rp28.000",
+    image: caramelImage,
   },
   {
     name: "Matcha Latte",
     description: "Matcha premium dengan tekstur lembut dan rasa yang creamy.",
     price: "Rp26.000",
+    image: matchaImage,
   },
 ];
 
 function Menu() {
   return (
     <section className="menu" id="menu">
-      {/* BACKGROUND */}
-
-      <img
-        className="menu-background"
-        src={coffeeImage}
-        alt="Kopi Kenangan Senja"
-      />
-
       <div className="menu-overlay"></div>
 
-      {/* CONTENT */}
-
       <div className="menu-container">
-        {/* LEFT */}
-
         <div className="menu-intro">
           <div className="menu-label">
             <span></span>
@@ -63,18 +59,15 @@ function Menu() {
           </p>
 
           <a href="#menu-list" className="menu-main-button">
-            Lihat Semua Menu
-            <span>→</span>
+            Lihat Semua Menu <span>→</span>
           </a>
         </div>
-
-        {/* MENU CARDS */}
 
         <div className="menu-list" id="menu-list">
           {menuItems.map((item, index) => (
             <div className="menu-card" key={index}>
               <div className="menu-card-image">
-                <img src={coffeeImage} alt={item.name} />
+                <img src={item.image} alt={item.name} />
 
                 <span className="menu-category">COFFEE</span>
               </div>

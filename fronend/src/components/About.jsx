@@ -1,11 +1,9 @@
 import "../styles/About.css";
-import coffeeImage from "../assets/hero-coffee.png";
+import coffeeImage from "../assets/barista.png";
 
 function About() {
   return (
     <section className="about" id="about">
-      {/* BACKGROUND */}
-
       <img
         className="about-background"
         src={coffeeImage}
@@ -14,12 +12,9 @@ function About() {
 
       <div className="about-overlay"></div>
 
-      {/* CONTENT */}
-
       <div className="about-container">
-        {/* LEFT CONTENT */}
-
-        <div className="about-content">
+        {/* KONTEN KIRI */}
+        <div className="about-content reveal reveal-left">
           <div className="about-label">
             <span></span>
             ABOUT US
@@ -40,8 +35,6 @@ function About() {
             Kami memilih biji kopi berkualitas dan mengolahnya dengan penuh
             perhatian untuk menghadirkan rasa yang nikmat di setiap cangkir.
           </p>
-
-          {/* STATS */}
 
           <div className="about-stats">
             <div className="about-stat">
@@ -67,9 +60,8 @@ function About() {
           </div>
         </div>
 
-        {/* RIGHT VISUAL */}
-
-        <div className="about-visual">
+        {/* GAMBAR KANAN */}
+        <div className="about-visual reveal reveal-right">
           <div className="about-image-card">
             <img src={coffeeImage} alt="Secangkir kopi" />
 
@@ -90,8 +82,6 @@ function About() {
               </p>
             </div>
           </div>
-
-          {/* DECORATION */}
 
           <div className="about-circle"></div>
 

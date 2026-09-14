@@ -1,9 +1,9 @@
 import "../styles/Hero.css";
-import heroCoffee from "../assets/hero-coffee.png";
+import heroCoffee from "../assets/coffee2.png";
 
 function Hero() {
   return (
-    <section className="hero">
+    <section className="hero" id="home">
       <img
         className="hero-background"
         src={heroCoffee}
