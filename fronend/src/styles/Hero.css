@@ -69,10 +69,14 @@
 }
 
 .hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 15px 28px;
   border-radius: 5px;
   font-size: 14px;
   font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
   transition: 0.3s ease;
 }

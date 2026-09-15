@@ -1,7 +1,70 @@
+import { useState } from "react";
 import "../styles/Contact.css";
 import coffeeImage from "../assets/hero-coffee.png";
 
 function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [status, setStatus] = useState({
+    type: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus({
+      type: "",
+      message: "",
+    });
+
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Gagal mengirim pesan.");
+      }
+      setStatus({
+        type: "success",
+        message: "Pesan berhasil dikirim. Terima Kasih!",
+      });
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (err) {
+      setStatus({
+        type: "error",
+        message: err.message || "Terjadi kesalahan",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <section className="contact" id="contact">
       {/* Background */}
@@ -46,32 +109,65 @@ function Contact() {
               </div>
             </div>
 
-            <form className="contact-form">
+            <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-row">
                 <div className="form-group">
-                  <label>NAMA</label>
+                  <label htmlFor="name">NAMA</label>
 
-                  <input type="text" placeholder="Nama Anda" />
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Nama Anda"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
 
                 <div className="form-group">
-                  <label>EMAIL</label>
+                  <label htmlFor="email">EMAIL</label>
 
-                  <input type="email" placeholder="Email Anda" />
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="Email Anda"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
               </div>
 
               <div className="form-group">
-                <label>PESAN</label>
+                <label htmlFor="message">PESAN</label>
 
-                <textarea rows="4" placeholder="Tulis pesan Anda..."></textarea>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  placeholder="Tulis pesan Anda..."
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                ></textarea>
               </div>
 
-              <button type="submit" className="contact-button">
-                <span>Kirim Pesan</span>
+              <button
+                type="submit"
+                className="contact-button"
+                disabled={loading}
+              >
+                <span>{loading ? "Mengirim..." : "Kirim Pesan"}</span>
 
                 <span className="button-arrow">→</span>
               </button>
+              {status.message && (
+                <p className={`contact-status ${status.type}`}>
+                  {status.message}
+                </p>
+              )}
             </form>
           </div>
         </div>

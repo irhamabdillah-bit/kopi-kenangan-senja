@@ -150,7 +150,7 @@
 
 /* Tablet */
 
-@media (max-width: 950) {
+@media (max-width: 950px) {
   .footer {
     padding: 80px 40px 25px;
   }

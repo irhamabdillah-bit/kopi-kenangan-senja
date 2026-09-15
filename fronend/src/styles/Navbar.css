@@ -49,7 +49,7 @@
   transition: color 0.3s ease;
 }
 
-.navbar-menu a::filter {
+.navbar-menu a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -90,8 +90,9 @@
   width: 19px;
   height: 1.5px;
   background: #c8a27a;
-  transition: transform 0.3s ease;
-  opacity: 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 /* Hamburger -> X */

@@ -21,40 +21,55 @@ function Testimonials() {
 
   return (
     <section className="testimonials" id="testimonials">
-      <div className="testimonials-header">
-        <p className="testimonials-subtitle">TESTIMONIALS</p>
+      <div className="testimonials-container">
+        <div className="testimonials-header reveal reveal-up">
+          <p className="testimonials-subtitle">TESTIMONIALS</p>
 
-        <h2>Cerita Dari Mereka</h2>
+          <h2>
+            Cerita Dari <strong>Mereka.</strong>
+          </h2>
 
-        <p className="testimonials-description">
-          Pengalaman sederhana dari pelanggan yang telah menikmati secangkir
-          kopi bersama kami.
-        </p>
-      </div>
+          <p className="testimonials-description">
+            Pengalaman sederhana dari pelanggan yang telah menikmati secangkir
+            kopi bersama kami.
+          </p>
+        </div>
 
-      <div className="testimonials-grid">
-        {testimonials.map((testimonial, index) => (
-          <div
-            className={`testimonial-card ${index === 1 ? "featured" : ""}`}
-            key={testimonial.name}
-          >
-            <div className="testimonial-quote">“</div>
+        <div className="testimonials-grid">
+          {testimonials.map((testimonial, index) => (
+            <div
+              className={`testimonial-card reveal ${
+                index === 1 ? "featured" : ""
+              } ${
+                index === 0
+                  ? "reveal-left"
+                  : index === 1
+                    ? "reveal-up"
+                    : "reveal-right"
+              }`}
+              key={testimonial.name}
+            >
+              <div className="testimonial-top">
+                <div className="testimonial-stars">★ ★ ★ ★ ★</div>
 
-            <p className="testimonial-text">{testimonial.text}</p>
-
-            <div className="testimonial-author">
-              <div className="testimonial-avatar">
-                {testimonial.name.charAt(0)}
+                <div className="testimonial-quote">“</div>
               </div>
 
-              <div>
-                <h3>{testimonial.name}</h3>
+              <p className="testimonial-text">{testimonial.text}</p>
 
-                <span>{testimonial.role}</span>
+              <div className="testimonial-author">
+                <div className="testimonial-avatar">
+                  {testimonial.name.charAt(0)}
+                </div>
+
+                <div>
+                  <h3>{testimonial.name}</h3>
+                  <span>{testimonial.role}</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

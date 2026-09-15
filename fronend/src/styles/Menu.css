@@ -384,31 +384,25 @@
 ========================= */
 
 .menu-order-button {
-  padding: 8px 13px;
-
-  border: 1px solid rgba(200, 162, 122, 0.7);
-
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 10px 18px;
+  border: 1px solid #c8a27a;
   border-radius: 4px;
-
   background: transparent;
-
   color: #c8a27a;
-
-  font-size: 10px;
-
+  font-size: 12px;
   font-weight: 600;
-
   cursor: pointer;
-
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .menu-order-button:hover {
   background: #c8a27a;
-
-  color: #171717;
+  color: #151515;
+  transform: translateY(-2px);
 }
 
 /* =========================

@@ -33,35 +33,21 @@ select {
     transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Form Button */
-
 .reveal-up {
   transform: translateY(70px);
 }
 
-/* Form Left */
-
 .reveal-left {
-  transform: translateY(-70px);
+  transform: translateX(-70px);
 }
-
-/* Form Right */
 
 .reveal-right {
   transform: translateX(70px);
 }
 
-/* Active */
-
 .reveal.active {
   opacity: 1;
   transform: translate(0);
-}
-
-/* Image Hover / Motion */
-
-reveal.active img {
-  animation: imageReveal 1.2s ease forwards;
 }
 
 @keyframes imageReveal {

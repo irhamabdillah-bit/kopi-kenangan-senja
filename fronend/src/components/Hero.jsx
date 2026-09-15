@@ -22,8 +22,12 @@ function Hero() {
           menemani setiap cerita dan momen berharga Anda.
         </p>
         <div className="hero-buttons">
-          <button className="hero-button primary">Lihat Menu</button>
-          <button className="hero-button secondary">Pesan Sekarang</button>
+          <a href="#menu" className="hero-button primary">
+            Lihat Menu
+          </a>
+          <a href="#contact" className="hero-button secondary">
+            Pesan Sekarang
+          </a>
         </div>
       </div>
     </section>

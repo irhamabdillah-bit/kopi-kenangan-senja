@@ -354,3 +354,22 @@
     font-size: 27px;
   }
 }
+
+.contact-status {
+  margin: 15px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.contact-status.success {
+  color: #8fbd91;
+}
+
+.contact-status.error {
+  color: #d88989;
+}
+
+.contact-status:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

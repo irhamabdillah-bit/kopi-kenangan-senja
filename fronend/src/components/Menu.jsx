@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/Menu.css";
 
 import latteImage from "../assets/latte.png";
@@ -5,41 +7,73 @@ import americanoImage from "../assets/americano.png";
 import caramelImage from "../assets/caramel.png";
 import matchaImage from "../assets/matcha.png";
 
-const menuItems = [
-  {
-    name: "Creamy Latte",
-    description: "Perpaduan espresso dan susu creamy dengan rasa yang lembut.",
-    price: "Rp25.000",
-    image: latteImage,
-  },
-  {
-    name: "Iced Americano",
-    description:
-      "Kopi hitam dengan rasa bold dan segar, cocok untuk segala suasana.",
-    price: "Rp20.000",
-    image: americanoImage,
-  },
-  {
-    name: "Caramel Macchiato",
-    description:
-      "Kombinasi espresso, susu, dan sentuhan caramel yang menggoda.",
-    price: "Rp28.000",
-    image: caramelImage,
-  },
-  {
-    name: "Matcha Latte",
-    description: "Matcha premium dengan tekstur lembut dan rasa yang creamy.",
-    price: "Rp26.000",
-    image: matchaImage,
-  },
-];
+const menuImages = {
+  1: latteImage,
+  2: caramelImage,
+  4: americanoImage,
+  5: matchaImage,
+};
 
 function Menu() {
+  const navigate = useNavigate();
+
+  const [menuItems, setMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/products");
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Gagal mengambil data menu.");
+        }
+
+        setMenuItems(data.data);
+
+        setMenuItems(
+          data.data.filter((item) => [1, 2, 4, 5].includes(item.id)),
+        );
+      } catch (err) {
+        console.error("Error mengambil menu:", err);
+        setError("Menu gagal dimuat.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="menu" id="menu">
+        <div className="menu-container">
+          <p>Memuat menu...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="menu" id="menu">
+        <div className="menu-container">
+          <p>{error}</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="menu" id="menu">
       <div className="menu-overlay"></div>
 
       <div className="menu-container">
+        {/* INTRO */}
         <div className="menu-intro">
           <div className="menu-label">
             <span></span>
@@ -63,13 +97,16 @@ function Menu() {
           </a>
         </div>
 
+        {/* MENU LIST */}
         <div className="menu-list" id="menu-list">
-          {menuItems.map((item, index) => (
-            <div className="menu-card" key={index}>
+          {menuItems.map((item) => (
+            <div className="menu-card" key={item.id}>
               <div className="menu-card-image">
-                <img src={item.image} alt={item.name} />
+                <img src={menuImages[item.id]} alt={item.name} />
 
-                <span className="menu-category">COFFEE</span>
+                <span className="menu-category">
+                  {item.category_name || "COFFEE"}
+                </span>
               </div>
 
               <div className="menu-card-content">
@@ -80,9 +117,26 @@ function Menu() {
                 <div className="menu-card-line"></div>
 
                 <div className="menu-card-bottom">
-                  <span className="menu-price">{item.price}</span>
+                  <span className="menu-price">
+                    Rp
+                    {Number(item.price).toLocaleString("id-ID")}
+                  </span>
 
-                  <button className="menu-order-button">Pesan</button>
+                  <button
+                    className="menu-button"
+                    onClick={() =>
+                      navigate("/order", {
+                        state: {
+                          product: {
+                            ...item,
+                            image: menuImages[item.id],
+                          },
+                        },
+                      })
+                    }
+                  >
+                    Pesan
+                  </button>
                 </div>
               </div>
             </div>
