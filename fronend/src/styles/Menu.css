@@ -383,26 +383,85 @@
    ORDER BUTTON
 ========================= */
 
-.menu-order-button {
+.menu-button {
+  position: relative;
+  min-width: 105px;
+  padding: 12px 20px;
+  border: 1px solid #d1a26c;
+  border-radius: 3px;
+  background: transparent;
+  color: #d1a26c;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    color 0.35s ease,
+    transform 0.35s ease,
+    border-color 0.35s ease;
+
+  z-index: 1;
+}
+
+.menu-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  background: #d1a26c;
+  transition: height 0.35s ease;
+  z-index: -1;
+}
+
+.menu-button:hover::before {
+  height: 100%;
+}
+
+.menu-button:hover {
+  color: #111111;
+  border-color: #d1a26c;
+  transform: translateY(-2px);
+}
+
+/* Lihat Semua menu */
+
+.menu-main-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  padding: 10px 18px;
-  border: 1px solid #c8a27a;
-  border-radius: 4px;
+  gap: 14px;
+  margin-top: 30px;
+  padding: 15px 24px;
+  border: 1px solid rgba(209, 162, 108, 0.7);
+  border-radius: 3px;
   background: transparent;
-  color: #c8a27a;
-  font-size: 12px;
+  color: #d1a26c;
+  font-size: 13px;
   font-weight: 600;
+  letter-spacing: 1px;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
-.menu-order-button:hover {
-  background: #c8a27a;
-  color: #151515;
+.menu-main-button span {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.menu-main-button:hover {
+  background: #d1a26c;
+  color: #111111;
   transform: translateY(-2px);
+}
+
+.menu-main-button:hover span {
+  transform: translateX(5px);
 }
 
 /* =========================

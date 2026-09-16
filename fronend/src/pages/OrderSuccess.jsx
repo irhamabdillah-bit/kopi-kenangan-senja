@@ -56,14 +56,22 @@ function OrderSuccess() {
         <div className="success-actions">
           <button
             className="success-button primary"
-            onClick={() => navigate("/")}
+            onClick={() => {
+              navigate("/");
+            }}
           >
             Kembali ke Home
           </button>
 
           <button
             className="success-button secondary"
-            onClick={() => navigate("/#menu")}
+            onClick={() => {
+              navigate("/", {
+                state: {
+                  scrollTo: "menu",
+                },
+              });
+            }}
           >
             Lihat Menu Lagi
           </button>

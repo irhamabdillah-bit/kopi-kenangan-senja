@@ -2,22 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Menu.css";
 
-import latteImage from "../assets/latte.png";
-import americanoImage from "../assets/americano.png";
-import caramelImage from "../assets/caramel.png";
-import matchaImage from "../assets/matcha.png";
-
-const menuImages = {
-  1: latteImage,
-  2: caramelImage,
-  4: americanoImage,
-  5: matchaImage,
-};
-
 function Menu() {
   const navigate = useNavigate();
 
   const [menuItems, setMenuItems] = useState([]);
+  const [showAll, setShowAll] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -32,11 +21,11 @@ function Menu() {
           throw new Error(data.message || "Gagal mengambil data menu.");
         }
 
-        setMenuItems(data.data);
-
-        setMenuItems(
-          data.data.filter((item) => [1, 2, 4, 5].includes(item.id)),
+        const products = data.data.filter((item) =>
+          [1, 2, 4, 5].includes(item.id),
         );
+
+        setMenuItems(products);
       } catch (err) {
         console.error("Error mengambil menu:", err);
         setError("Menu gagal dimuat.");
@@ -48,10 +37,12 @@ function Menu() {
     fetchProducts();
   }, []);
 
+  const displayedItems = showAll ? menuItems : menuItems.slice(0, 2);
+
   if (loading) {
     return (
       <section className="menu" id="menu">
-        <div className="menu-container">
+        <div className="menu-container menu-status">
           <p>Memuat menu...</p>
         </div>
       </section>
@@ -61,7 +52,7 @@ function Menu() {
   if (error) {
     return (
       <section className="menu" id="menu">
-        <div className="menu-container">
+        <div className="menu-container menu-status">
           <p>{error}</p>
         </div>
       </section>
@@ -74,6 +65,7 @@ function Menu() {
 
       <div className="menu-container">
         {/* INTRO */}
+
         <div className="menu-intro">
           <div className="menu-label">
             <span></span>
@@ -92,17 +84,26 @@ function Menu() {
             perhatian.
           </p>
 
-          <a href="#menu-list" className="menu-main-button">
-            Lihat Semua Menu <span>→</span>
-          </a>
+          <button
+            className="menu-main-button"
+            onClick={() => setShowAll(!showAll)}
+          >
+            {showAll ? "Sembunyikan Menu" : "Lihat Semua Menu"}
+
+            <span>{showAll ? "↑" : "→"}</span>
+          </button>
         </div>
 
         {/* MENU LIST */}
+
         <div className="menu-list" id="menu-list">
-          {menuItems.map((item) => (
+          {displayedItems.map((item) => (
             <div className="menu-card" key={item.id}>
               <div className="menu-card-image">
-                <img src={menuImages[item.id]} alt={item.name} />
+                <img
+                  src={`http://localhost:5000/uploads/${item.image}`}
+                  alt={item.name}
+                />
 
                 <span className="menu-category">
                   {item.category_name || "COFFEE"}
@@ -129,7 +130,7 @@ function Menu() {
                         state: {
                           product: {
                             ...item,
-                            image: menuImages[item.id],
+                            image: `http://localhost:5000/uploads/${item.image}`,
                           },
                         },
                       })

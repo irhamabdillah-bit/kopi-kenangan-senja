@@ -110,7 +110,16 @@ function Order() {
   return (
     <section className="order-page">
       <div className="order-container">
-        <button className="back-button" onClick={() => navigate(-1)}>
+        <button
+          className="back-button"
+          onClick={() => {
+            navigate("/", {
+              state: {
+                scrollTo: "menu",
+              },
+            });
+          }}
+        >
           ← Kembali
         </button>
 

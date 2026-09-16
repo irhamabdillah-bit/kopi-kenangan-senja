@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -13,6 +13,7 @@ import Order from "./pages/Order";
 import OrderSuccess from "./pages/OrderSuccess";
 
 function Home() {
+  const location = useLocation();
   useEffect(() => {
     const elements = document.querySelectorAll(".reveal");
 
@@ -34,30 +35,38 @@ function Home() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (location.state?.scrollTo === "menu") {
+      setTimeout(() => {
+        const menuSection = document.getElementById("menu");
+
+        if (menuSection) {
+          menuSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }, 100);
+    }
+  }, [location]);
+
   return (
     <>
       <Navbar />
-
       <Hero />
-
       <div className="reveal reveal-up">
         <About />
       </div>
-
       <div className="reveal reveal-right">
         <Menu />
       </div>
-
       <div className="reveal reveal-left">
         <WhyUs />
       </div>
-
       <Testimonials />
-
       <div className="reveal reveal-up">
         <Contact />
       </div>
-
       <Footer />
     </>
   );
