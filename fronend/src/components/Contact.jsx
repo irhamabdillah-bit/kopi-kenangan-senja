@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "../styles/Contact.css";
-import coffeeImage from "../assets/hero-coffee.png";
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -9,12 +8,9 @@ function Contact() {
     message: "",
   });
 
-  const [status, setStatus] = useState({
-    type: "",
-    message: "",
-  });
-
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,10 +24,8 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setStatus({
-      type: "",
-      message: "",
-    });
+    setSuccess("");
+    setError("");
 
     try {
       const response = await fetch("http://localhost:5000/api/contact", {
@@ -39,7 +33,11 @@ function Contact() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
       });
 
       const data = await response.json();
@@ -47,185 +45,125 @@ function Contact() {
       if (!response.ok) {
         throw new Error(data.message || "Gagal mengirim pesan.");
       }
-      setStatus({
-        type: "success",
-        message: "Pesan berhasil dikirim. Terima Kasih!",
-      });
+
+      setSuccess(
+        "Pesan berhasil dikirim. Terima kasih sudah menghubungi kami.",
+      );
+
       setFormData({
         name: "",
         email: "",
         message: "",
       });
     } catch (err) {
-      setStatus({
-        type: "error",
-        message: err.message || "Terjadi kesalahan",
-      });
+      console.error("Contact error:", err);
+      setError(err.message || "Terjadi kesalahan saat mengirim pesan.");
     } finally {
       setLoading(false);
     }
   };
+
   return (
     <section className="contact" id="contact">
-      {/* Background */}
-      <img
-        className="contact-background"
-        src={coffeeImage}
-        alt="Kopi Kenangan Senja"
-      />
-
-      <div className="contact-overlay"></div>
-
-      {/* Main Content */}
       <div className="contact-container">
-        {/* LEFT CONTENT */}
-
-        <div className="contact-left">
-          <div className="contact-label">
-            <span></span>
-            GET IN TOUCH
-          </div>
+        <div className="contact-intro">
+          <p className="contact-label">GET IN TOUCH</p>
 
           <h2>
-            Mari Nikmati
+            Ada yang ingin
             <br />
-            <strong>Secangkir Kopi.</strong>
+            <strong>ditanyakan?</strong>
           </h2>
 
           <p className="contact-description">
-            Punya pertanyaan atau ingin berkunjung? Kami siap menyambut Anda.
-            Hubungi kami atau datang langsung ke kedai kami.
+            Kami siap mendengar pertanyaan, kritik, saran, atau kebutuhan kerja
+            sama dari Anda.
           </p>
 
-          {/* FORM */}
+          <div className="contact-note">
+            <span>Untuk melakukan pemesanan</span>
+            <p>
+              Silakan pilih menu yang Anda inginkan, lalu tekan tombol{" "}
+              <strong>Pesan</strong>.
+            </p>
+          </div>
 
-          <div className="contact-form-wrapper">
-            <div className="contact-form-title">
-              <div className="form-title-icon">@</div>
-
-              <div>
-                <h3>Kirim Pesan</h3>
-                <p>Kami akan segera menghubungi Anda.</p>
-              </div>
+          <div className="contact-details">
+            <div>
+              <span>EMAIL</span>
+              <p>hello@kopikenangansenja.com</p>
             </div>
 
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="name">NAMA</label>
+            <div>
+              <span>WHATSAPP</span>
+              <p>+62 812 3456 7890</p>
+            </div>
 
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    placeholder="Nama Anda"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="email">EMAIL</label>
-
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="Email Anda"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="message">PESAN</label>
-
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="4"
-                  placeholder="Tulis pesan Anda..."
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="contact-button"
-                disabled={loading}
-              >
-                <span>{loading ? "Mengirim..." : "Kirim Pesan"}</span>
-
-                <span className="button-arrow">→</span>
-              </button>
-              {status.message && (
-                <p className={`contact-status ${status.type}`}>
-                  {status.message}
-                </p>
-              )}
-            </form>
+            <div>
+              <span>JAM OPERASIONAL</span>
+              <p>Setiap hari · 08.00 — 22.00</p>
+            </div>
           </div>
         </div>
 
-        {/* RIGHT CONTENT */}
-
-        <div className="contact-right">
-          <div className="contact-divider"></div>
-
-          <div className="contact-info">
-            {/* ALAMAT */}
-
-            <div className="contact-info-item">
-              <div className="contact-info-icon">+</div>
-
-              <div className="contact-info-content">
-                <span>ALAMAT</span>
-
-                <p>KOMP. sbs Jl. Danau toba raya Harapan Jaya, Bekasi Utara</p>
-              </div>
-            </div>
-
-            {/* TELEPON */}
-
-            <div className="contact-info-item">
-              <div className="contact-info-icon">☎</div>
-
-              <div className="contact-info-content">
-                <span>TELEPON</span>
-
-                <p>+62 812 3456 789</p>
-              </div>
-            </div>
-
-            {/* EMAIL */}
-
-            <div className="contact-info-item">
-              <div className="contact-info-icon">@</div>
-
-              <div className="contact-info-content">
-                <span>EMAIL</span>
-
-                <p>hello@kopikenangansenja.com</p>
-              </div>
-            </div>
+        <div className="contact-form-wrapper">
+          <div className="contact-form-header">
+            <span>SEND A MESSAGE</span>
+            <h3>Hubungi Kami</h3>
           </div>
 
-          {/* BOTTOM TEXT */}
+          <form onSubmit={handleSubmit}>
+            <div className="contact-row">
+              <div className="contact-group">
+                <label>Nama</label>
 
-          <div className="contact-bottom">
-            <span>KOPI KENANGAN SENJA</span>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Nama Anda"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <h3>
-              Sampai Jumpa
-              <br />
-              di Kedai Kami.
-            </h3>
-          </div>
+              <div className="contact-group">
+                <label>Email</label>
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Anda"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="contact-group">
+              <label>Pesan</label>
+
+              <textarea
+                name="message"
+                rows="6"
+                placeholder="Tulis pesan Anda..."
+                value={formData.message}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            {success && (
+              <div className="contact-message success">{success}</div>
+            )}
+
+            {error && <div className="contact-message error">{error}</div>}
+
+            <button type="submit" className="contact-submit" disabled={loading}>
+              {loading ? "Mengirim..." : "Kirim Pesan →"}
+            </button>
+          </form>
         </div>
       </div>
     </section>

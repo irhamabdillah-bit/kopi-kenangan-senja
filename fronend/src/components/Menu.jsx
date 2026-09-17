@@ -21,11 +21,7 @@ function Menu() {
           throw new Error(data.message || "Gagal mengambil data menu.");
         }
 
-        const products = data.data.filter((item) =>
-          [1, 2, 4, 5].includes(item.id),
-        );
-
-        setMenuItems(products);
+        setMenuItems(data.data);
       } catch (err) {
         console.error("Error mengambil menu:", err);
         setError("Menu gagal dimuat.");
@@ -89,7 +85,6 @@ function Menu() {
             onClick={() => setShowAll(!showAll)}
           >
             {showAll ? "Sembunyikan Menu" : "Lihat Semua Menu"}
-
             <span>{showAll ? "↑" : "→"}</span>
           </button>
         </div>
