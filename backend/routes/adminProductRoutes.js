@@ -38,7 +38,7 @@ const upload = multer({
 // GET PRODUCTS
 // =========================
 
-router.get("/", async (req, res) => {
+router.get("/", authMiddleware, async (req, res) => {
   try {
     const [rows] = await db.query(`
       SELECT
@@ -54,7 +54,6 @@ router.get("/", async (req, res) => {
       FROM products
       JOIN categories
         ON products.category_id = categories.id
-      WHERE products.is_active = true
     `);
 
     res.json({
@@ -62,11 +61,11 @@ router.get("/", async (req, res) => {
       data: rows,
     });
   } catch (err) {
-    console.error(err);
+    console.error("Admin fetch products error:", err);
 
     res.status(500).json({
       success: false,
-      message: "Gagal mengambil data product",
+      message: "Gagal mengambil data produk admin.",
     });
   }
 });
@@ -75,7 +74,7 @@ router.get("/", async (req, res) => {
 // ADD PRODUCT
 // =========================
 
-router.post("/", upload.single("image"), async (req, res) => {
+router.post("/", authMiddleware, upload.single("image"), async (req, res) => {
   try {
     const { name, price, category_id, description, stock, is_active } =
       req.body;
@@ -135,7 +134,7 @@ router.post("/", upload.single("image"), async (req, res) => {
 // UPDATE PRODUCT
 // =========================
 
-router.put("/:id", upload.single("image"), async (req, res) => {
+router.put("/:id", authMiddleware, upload.single("image"), async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -211,7 +210,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
 // TOGGLE PRODUCT STATUS
 // =========================
 
-router.patch("/:id/status", async (req, res) => {
+router.patch("/:id/status", authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
     const { is_active } = req.body;
@@ -259,7 +258,7 @@ router.patch("/:id/status", async (req, res) => {
 // DELETE PRODUCT
 // =========================
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
 

@@ -27,10 +27,18 @@ router.post("/", async (req, res) => {
     let totalPrice = 0;
 
     for (const item of items) {
+      if (
+        !Number.isInteger(Number(item.quantity)) ||
+        Number(item.quantity) <= 0
+      ) {
+        throw new Error("Jumlah produk tidak valid.");
+      }
+
       const [products] = await connection.execute(
         `SELECT id, price, stock
-         FROM products
-         WHERE id = ? AND is_active = true`,
+     FROM products
+     WHERE id = ? AND is_active = true
+     FOR UPDATE`,
         [item.product_id],
       );
 
@@ -63,9 +71,10 @@ router.post("/", async (req, res) => {
 
     for (const item of items) {
       const [products] = await connection.execute(
-        `SELECT price
-         FROM products
-         WHERE id = ?`,
+        `SELECT id, price, stock
+   FROM products
+   WHERE id = ? AND is_active = true
+   FOR UPDATE`,
         [item.product_id],
       );
 

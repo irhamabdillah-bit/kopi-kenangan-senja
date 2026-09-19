@@ -2,7 +2,6 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("../config/db");
-const e = require("express");
 
 const router = express.Router();
 
@@ -39,7 +38,7 @@ router.post("/login", async (req, res) => {
       {
         id: admin.id,
         email: admin.email,
-        password: admin.password,
+        name: admin.name,
       },
       process.env.JWT_SECRET,
       {

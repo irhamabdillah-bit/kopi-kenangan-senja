@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../styles/Order.css";
+import API_URL from "../config/api";
 
 function Order() {
   const location = useLocation();
@@ -63,7 +64,7 @@ function Order() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/orders", {
+      const response = await fetch(`${API_URL}/api/orders`, {
         method: "POST",
 
         headers: {

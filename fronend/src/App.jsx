@@ -11,6 +11,12 @@ import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import Order from "./pages/Order";
 import OrderSuccess from "./pages/OrderSuccess";
+import Login from "./pages/login";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminProducts from "./pages/admin/AdminProducts";
+import AdminOrders from "./pages/admin/AdminOrders";
+import AdminMessages from "./pages/admin/AdminMessages";
 
 function Home() {
   const location = useLocation();
@@ -84,6 +90,16 @@ function App() {
 
         {/* HALAMAN ORDER BERHASIL */}
         <Route path="/order-success" element={<OrderSuccess />} />
+
+        {/* Halaman Login */}
+        <Route path="/login" element={<Login />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/products" element={<AdminProducts />} />
+          <Route path="/admin/orders" element={<AdminOrders />} />
+          <Route path="/admin/messages" element={<AdminMessages />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

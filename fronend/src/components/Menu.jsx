@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Menu.css";
+import API_URL from "../config/api";
 
 function Menu() {
   const navigate = useNavigate();
@@ -13,8 +14,7 @@ function Menu() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/products");
-
+        const response = await fetch(`${API_URL}/api/products`);
         const data = await response.json();
 
         if (!response.ok) {
@@ -95,10 +95,7 @@ function Menu() {
           {displayedItems.map((item) => (
             <div className="menu-card" key={item.id}>
               <div className="menu-card-image">
-                <img
-                  src={`http://localhost:5000/uploads/${item.image}`}
-                  alt={item.name}
-                />
+                <img src={`${API_URL}/uploads/${item.image}`} alt={item.name} />
 
                 <span className="menu-category">
                   {item.category_name || "COFFEE"}
@@ -125,7 +122,7 @@ function Menu() {
                         state: {
                           product: {
                             ...item,
-                            image: `http://localhost:5000/uploads/${item.image}`,
+                            image: `${API_URL}/uploads/${item.image}`,
                           },
                         },
                       })

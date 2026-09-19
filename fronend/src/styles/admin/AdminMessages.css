@@ -1,0 +1,171 @@
+.messages-header {
+  margin-bottom: 30px;
+}
+
+.messages-header span {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #888;
+}
+
+.messages-header h2 {
+  margin: 8px 0;
+  font-size: 28px;
+  color: #fff;
+}
+
+.messages-header p {
+  margin: 0;
+  color: #888;
+}
+
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.message-card {
+  padding: 24px;
+  background: #151515;
+  border: 1px solid #292929;
+  border-radius: 16px;
+}
+
+.message-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.message-avatar {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: #292929;
+  color: #ddd;
+  font-weight: 600;
+}
+
+.message-sender {
+  flex: 1;
+}
+
+.message-sender h3 {
+  margin: 0 0 4px;
+  color: #fff;
+  font-size: 16px;
+}
+
+.message-sender span {
+  color: #777;
+  font-size: 13px;
+}
+
+.message-top time {
+  color: #666;
+  font-size: 12px;
+}
+
+.message-content {
+  margin: 20px 0;
+  padding: 18px;
+  background: #1c1c1c;
+  border-radius: 10px;
+}
+
+.message-content p {
+  margin: 0;
+  color: #ccc;
+  line-height: 1.7;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.message-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.reply-button,
+.delete-message-button {
+  padding: 9px 15px;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.reply-button {
+  border: 1px solid #333;
+  background: #222;
+  color: #ddd;
+}
+
+.delete-message-button {
+  border: 1px solid #4a2929;
+  background: #2a1b1b;
+  color: #e58b8b;
+}
+
+.messages-loading,
+.messages-empty {
+  padding: 50px;
+  text-align: center;
+  background: #151515;
+  border: 1px solid #292929;
+  border-radius: 14px;
+}
+
+.messages-empty h3 {
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.messages-empty p {
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  .messages-header h2 {
+    font-size: 23px;
+  }
+
+  .message-card {
+    padding: 18px;
+  }
+
+  .message-top {
+    align-items: flex-start;
+  }
+
+  .message-top time {
+    display: none;
+  }
+
+  .message-sender span {
+    font-size: 12px;
+    word-break: break-word;
+  }
+
+  .message-content {
+    margin: 16px 0;
+  }
+
+  .message-actions {
+    flex-direction: column;
+  }
+
+  .reply-button,
+  .delete-message-button {
+    width: 100%;
+    text-align: center;
+  }
+}
