@@ -2,7 +2,7 @@ import AdminSidebar from "../../components/admin/AdminSidebar";
 import AdminHeader from "../../components/admin/AdminHeader";
 import "../../styles/admin/AdminDashboard.css";
 import { useEffect, useState } from "react";
-import API_url from "../../config/api";
+import API_URL from "../../config/api";
 
 function AdminDashboard() {
   const [stats, setStats] = useState({
