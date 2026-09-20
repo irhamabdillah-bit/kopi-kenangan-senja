@@ -453,7 +453,11 @@ function AdminProducts() {
                         <div className="product-info">
                           {product.image ? (
                             <img
-                              src={`${API_URL}/uploads/${product.image}`}
+                              src={
+                                product.image?.startsWith("http")
+                                  ? product.image
+                                  : `${API_URL}/uploads/${product.image}`
+                              }
                               alt={product.name}
                             />
                           ) : (

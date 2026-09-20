@@ -2,17 +2,15 @@ const express = require("express");
 const router = express.Router();
 const db = require("../config/db");
 const multer = require("multer");
-const path = require("path");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("../config/cloudinary");
 const authMiddleware = require("../middleware/authMiddleware");
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../uploads"));
-  },
-
-  filename: (req, file, cb) => {
-    const uniqueName = Date.now() + "-" + file.originalname;
-    cb(null, uniqueName);
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "kopi-kenangan-senja",
+    allowed_formats: ["jpg", "jpeg", "png", "webp"],
   },
 });
 
@@ -86,7 +84,10 @@ router.post("/", authMiddleware, upload.single("image"), async (req, res) => {
       });
     }
 
-    const image = req.file ? req.file.filename : null;
+    const image = req.file ? req.file.path : null;
+
+    console.log("FILE DARI CLOUDINARY:", req.file);
+    console.log("IMAGE YANG DISIMPAN:", image);
 
     const [result] = await db.execute(
       `
@@ -165,7 +166,7 @@ router.put("/:id", authMiddleware, upload.single("image"), async (req, res) => {
 
     // Kalau tidak upload gambar baru,
     // gunakan gambar lama
-    const image = req.file ? req.file.filename : oldImage;
+    const image = req.file ? req.file.path : oldImage;
 
     await db.execute(
       `
