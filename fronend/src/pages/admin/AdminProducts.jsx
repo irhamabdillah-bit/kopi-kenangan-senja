@@ -452,14 +452,7 @@ function AdminProducts() {
                       <td>
                         <div className="product-info">
                           {product.image ? (
-                            <img
-                              src={
-                                product.image?.startsWith("http")
-                                  ? product.image
-                                  : `${API_URL}/uploads/${product.image}`
-                              }
-                              alt={product.name}
-                            />
+                            <img src={product.image} alt={product.name} />
                           ) : (
                             <div className="product-no-image">No Image</div>
                           )}

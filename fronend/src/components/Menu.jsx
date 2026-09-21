@@ -95,14 +95,7 @@ function Menu() {
           {displayedItems.map((item) => (
             <div className="menu-card" key={item.id}>
               <div className="menu-card-image">
-                <img
-                  src={
-                    item.image?.startsWith("http")
-                      ? item.image
-                      : `${API_URL}/uploads/${item.image}`
-                  }
-                  alt={item.name}
-                />
+                <img src={item.image} alt={item.name} />
 
                 <span className="menu-category">
                   {item.category_name || "COFFEE"}
@@ -129,9 +122,7 @@ function Menu() {
                         state: {
                           product: {
                             ...item,
-                            image: item.image?.startsWith("http")
-                              ? item.image
-                              : `${API_URL}/uploads/${item.image}`,
+                            image: item.image,
                           },
                         },
                       })
