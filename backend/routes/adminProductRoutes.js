@@ -86,9 +86,6 @@ router.post("/", authMiddleware, upload.single("image"), async (req, res) => {
 
     const image = req.file ? req.file.path : null;
 
-    console.log("FILE DARI CLOUDINARY:", req.file);
-    console.log("IMAGE YANG DISIMPAN:", image);
-
     const [result] = await db.execute(
       `
       INSERT INTO products
