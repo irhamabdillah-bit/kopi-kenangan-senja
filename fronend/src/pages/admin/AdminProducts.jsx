@@ -32,8 +32,6 @@ function AdminProducts() {
 
       const data = await response.json();
 
-      console.log("PRODUCTS:", data);
-
       if (!response.ok) {
         throw new Error(data.message || "Gagal mengambil produk.");
       }
@@ -137,8 +135,6 @@ function AdminProducts() {
 
       const result = await response.json();
 
-      console.log(editingProduct ? "UPDATE PRODUCT:" : "ADD PRODUCT:", result);
-
       if (!response.ok) {
         throw new Error(
           result.message ||
@@ -198,8 +194,6 @@ function AdminProducts() {
 
       const result = await response.json();
 
-      console.log("TOGGLE STATUS:", result);
-
       if (!response.ok) {
         throw new Error(result.message || "Gagal mengubah status produk.");
       }
@@ -233,8 +227,6 @@ function AdminProducts() {
       );
 
       const result = await response.json();
-
-      console.log("DELETE PRODUCT:", result);
 
       if (!response.ok) {
         throw new Error(result.message || "Gagal menghapus produk.");

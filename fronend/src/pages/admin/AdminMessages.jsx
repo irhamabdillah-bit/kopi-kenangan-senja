@@ -18,8 +18,6 @@ function AdminMessages() {
 
       const result = await response.json();
 
-      console.log("ADMIN MESSAGES:", result);
-
       if (!response.ok) {
         throw new Error(result.message || "Gagal mengambil pesan.");
       }

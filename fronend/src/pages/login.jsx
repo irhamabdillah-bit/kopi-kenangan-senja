@@ -38,11 +38,7 @@ function Login() {
         body: JSON.stringify(formData),
       });
 
-      console.log("STATUS:", response.status);
-
       const data = await response.json();
-
-      console.log("RESPONSE:", data);
 
       if (!response.ok) {
         throw new Error(data.message || "Login gagal.");

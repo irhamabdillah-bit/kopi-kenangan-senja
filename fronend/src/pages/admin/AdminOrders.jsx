@@ -18,8 +18,6 @@ function AdminOrders() {
 
       const result = await response.json();
 
-      console.log("ADMIN ORDERS:", result);
-
       if (!response.ok) {
         throw new Error(result.message || "Gagal mengambil data pesanan.");
       }
